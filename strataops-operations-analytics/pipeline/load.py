@@ -13,6 +13,7 @@ DB_URI = os.getenv("DB_URI")
 engine = create_engine(DB_URI)
 
 # Grabbing the oldest date from our DB..
+# Returns date (eg 2025.02.02)
 def get_last_loaded_date():
     with engine.connect() as conn:
         result = conn.execute(text("SELECT MAX(date) FROM production_logs"))
@@ -21,12 +22,15 @@ def get_last_loaded_date():
 
 
 # Remove all data older than that point
+# Returns filtered df
 def filter_new_data(df: pd.DataFrame, last_date):
     if last_date is None:
         print("[INFO] No existing data found. Loading full dataset..")
         return df
 
+    last_date = pd.to_datetime(last_date) # date -> pandas datetime (code didn't work without thiss)
     print(f"[INFO] Last loaded date: {last_date}")
+
     new_df = df[df["date"] > last_date]
 
     print(f"[INFO] New rows to insert: {len(new_df)}")
