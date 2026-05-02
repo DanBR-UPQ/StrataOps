@@ -6,11 +6,16 @@ import os
 load_dotenv()
 DB_URI = os.getenv("DB_URI")
 
+engine = create_engine(DB_URI)
 
 # We make sure we're only adding NEW data
 # That is, we check for the latest date on the DB and only insert if it's after said date
 
-engine = create_engine(DB_URI)
+
+
+# -------------------------------------- FILTERING BY DATE -------------------------------------- 
+
+
 
 # Grabbing the oldest date from our DB..
 # Returns date (eg 2025.02.02)
@@ -28,7 +33,7 @@ def filter_new_data(df: pd.DataFrame, last_date):
         print("[INFO] No existing data found. Loading full dataset..")
         return df
 
-    last_date = pd.to_datetime(last_date) # date -> pandas datetime (code didn't work without thiss)
+    last_date = pd.to_datetime(last_date) # date -> pandas datetime (code didn't work without this)
     print(f"[INFO] Last loaded date: {last_date}")
 
     new_df = df[df["date"] > last_date]
@@ -37,7 +42,13 @@ def filter_new_data(df: pd.DataFrame, last_date):
     return new_df
 
 
-# Load it into the db automatically (we had to import the csv into pgadmin manually before this)
+
+# -------------------------------------- LOADING -------------------------------------- 
+
+
+
+
+# Loading it into the db automatically.. (we had to import the csv into pgadmin manually before this)
 def load_data(df: pd.DataFrame):
     print("[INFO] Loading data....")
     print(f"[INFO] Total rows before filter: {len(df)}")
