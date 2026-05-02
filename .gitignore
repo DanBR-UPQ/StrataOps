@@ -1,2 +1,4 @@
 cmd commands.txt
 .env
+
+strataops-operations-analytics/data/raw/production_logs.csv
