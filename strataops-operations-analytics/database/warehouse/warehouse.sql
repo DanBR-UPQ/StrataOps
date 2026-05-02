@@ -1,23 +1,20 @@
 -- ---------------------------------- DIMENSIONS ---------------------------------- 
 
 CREATE TABLE dim_machine (
-    machine_key SERIAL PRIMARY KEY,
-    machine_id VARCHAR UNIQUE,
+    machine_id VARCHAR PRIMARY KEY,
     machine_type VARCHAR,
     installation_year INT
 );
 
 CREATE TABLE dim_date (
-    date_key SERIAL PRIMARY KEY,
-    date DATE UNIQUE,
+    date DATE PRIMARY KEY,
     year INT,
     month INT,
     day INT
 );
 
 CREATE TABLE dim_operator (
-    operator_key SERIAL PRIMARY KEY,
-    operator_id VARCHAR UNIQUE,
+    operator_id VARCHAR PRIMARY KEY
 );
 
 
@@ -31,7 +28,7 @@ CREATE TABLE fact_production (
     defective_units INT,
     downtime_minutes INT,
 
-    machine_key INT REFERENCES dim_machine(machine_key),
-    date_key INT REFERENCES dim_date(date_key),
-    operator_key INT REFERENCES dim_operator(operator_key)
+    machine_id VARCHAR REFERENCES dim_machine(machine_id),
+    date DATE REFERENCES dim_date(date),
+    operator_id VARCHAR REFERENCES dim_operator(operator_id)
 );
