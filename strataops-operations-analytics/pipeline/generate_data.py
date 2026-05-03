@@ -17,7 +17,7 @@ from datetime import datetime, timedelta
 
 
 start_date = datetime(2025, 1, 1)
-days = 120  # ~4 months
+days = 365 * 3  # ~3 years
 machines = ["M1", "M2", "M3", "M4", "M5"]
 shifts = ["Day", "Night"]
 
