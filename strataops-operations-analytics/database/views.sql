@@ -1,8 +1,8 @@
 -- =========================================================
--- GLOBAL KPIs (single-row, single-purpose metrics)
+-- GLOBAL KPIs 
 -- =========================================================
 
--- Core factory KPIs (best for dashboard cards)
+-- Core factory KPIs 
 CREATE OR REPLACE VIEW kpi_production_global AS
 SELECT
 SUM(units_produced) AS total_units_produced,
