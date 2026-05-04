@@ -11,5 +11,5 @@ def machines():
     return get_machines()
 
 @router.get("/{id}")
-def machine_by_id(id: int):
+def machine_by_id(id):
     return get_machine_by_id(id)
