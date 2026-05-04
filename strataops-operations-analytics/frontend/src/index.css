@@ -1,0 +1,5 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #1a3a5c; }
+#root { width: 100%; max-width: 100%; border: none; min-height: 100svh; }
+.main-grid { display: grid; grid-template-columns: 380px 1fr; gap: 12px; min-width: 0; }
+.right-col { min-width: 0; }
