@@ -1,5 +1,6 @@
 cmd commands.txt
 .env
 
+__pycache__
+
 strataops-operations-analytics/data/raw/production_logs.csv
-strataops-operations-analytics/pipeline/__pycache__
