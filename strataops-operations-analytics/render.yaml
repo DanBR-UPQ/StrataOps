@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: strataops-api
+    runtime: docker
+    dockerContext: ./api
+    dockerfilePath: ./api/Dockerfile
+    envVars:
+      - key: DB_URI
+        sync: false
